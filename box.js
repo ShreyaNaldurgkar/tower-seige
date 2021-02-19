@@ -12,14 +12,23 @@ class Box {
     World.add(world, this.body);
   }
   display() {
-    var angle = this.body.angle;
-    push();
-    translate(this.body.position.x, this.body.position.y);
-    rotate(angle);
-    rectMode(CENTER);
-    rect(0, 0, this.width, this.height);
-    strokeWeight(5);
-    fill("blue");
-    pop();
+    var pos =this.body.position;
+      var angle = this.body.angle;
+      if(this.body.speed < 9) {
+        push();
+        translate(pos.x, pos.y);
+        rotate(angle);
+        rectMode(CENTER);
+        strokeWeight(3);
+        fill("blue");
+        rect(0, 0, this.width, this.height);
+        pop();
+      } else {
+        World.remove(world, this.body);
+        push();
+        this.Visibility = this.Visibility - 5;
+        tint(255, this.Visibility);
+        pop();
+      }
+    }
   }
-}
